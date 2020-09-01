@@ -1,4 +1,6 @@
 export INFLUXDB_VERSION = 1.4.2
+export INFLUXDB_INSTALL_METHOD = go-build
+export INFLUXDB_DEB_SHA256 = unused
 
 export GO_VERSION = 1.10.8
 export GO_SHA256SUM = d8626fb6f9a3ab397d88c483b576be41fa81eefcec2fd18562c87626dbb3c39e

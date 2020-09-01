@@ -1,4 +1,4 @@
-FROM aptible/debian:jessie
+FROM aptible/debian:stretch
 
 ENV INFLUXDB_USER influxdb
 ENV INFLUXDB_GROUP influxdb
@@ -7,10 +7,13 @@ RUN groupadd -r "$INFLUXDB_GROUP" \
  && useradd -r -g "$INFLUXDB_GROUP" "$INFLUXDB_USER"
 
 ENV INFLUXDB_VERSION <%= ENV.fetch('INFLUXDB_VERSION') %>
+ENV INFLUXDB_DEB_SHA256 <%= ENV.fetch('INFLUXDB_DEB_SHA256') %>
+
 ENV GO_VERSION <%= ENV.fetch('GO_VERSION') %>
 ENV GO_SHA256SUM <%= ENV.fetch('GO_SHA256SUM') %>
+
 ADD script /script
-RUN /script/install-influxdb.sh
+RUN /script/install-influxdb-<%= ENV.fetch('INFLUXDB_INSTALL_METHOD') %>.sh
 
 RUN apt-install pwgen sudo
 

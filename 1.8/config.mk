@@ -1,0 +1,6 @@
+export INFLUXDB_VERSION = 1.8.2
+export INFLUXDB_INSTALL_METHOD = dpkg-deb
+export INFLUXDB_DEB_SHA256 = 60208f0199db6200737be13ed7c205886edbc784aea2e5a3634c43f4f5bbfbdd
+
+export GO_VERSION = unused
+export GO_SHA256SUM = unused

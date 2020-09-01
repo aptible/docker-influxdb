@@ -15,3 +15,9 @@ source "${BATS_TEST_DIRNAME}/test_helpers.sh"
     -u "${USERNAME}:${PASSPHRASE}" \
     --data-binary "series,foo=bar value=123 ${utcNow}"
 }
+
+@test "It uses a consistent user/group ID for influx" {
+  run id influxdb
+
+  [ $output == "uid=999(influxdb) gid=999(influxdb) groups=999(influxdb)" ] 
+}
