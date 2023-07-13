@@ -1,6 +1,8 @@
 export INFLUXDB_VERSION = 2.7.0
 export INFLUXDB_INSTALL_METHOD = dpkg2-deb
 export INFLUXDB_DEB_SHA256 = 82790ac5027777750c72e23a71a52e78d828b7b0cbf6c7cfebf6d0649960631f
+export INFLUX_CLIENT = true
+export INFLUXDB_ENTRYPOINT = run-database2
 
 export GO_VERSION = unused
 export GO_SHA256SUM = unused

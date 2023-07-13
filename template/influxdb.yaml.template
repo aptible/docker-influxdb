@@ -1,0 +1,7 @@
+reporting-disabled: true
+bolt-path: __DATA_DIRECTORY__/influxdb.bolt
+sqlite-path: __DATA_DIRECTORY__/influxd.sqlite
+engine-path: __DATA_DIRECTORY__/engine
+tls-cert: __SSL_CERTIFICATE_FILE__
+tls-key: __SSL_KEY_FILE__
+http-bind-address: "__HOST__:__PORT__"

@@ -7,7 +7,9 @@ RUN groupadd -r "$INFLUXDB_GROUP" \
  && useradd -r -g "$INFLUXDB_GROUP" "$INFLUXDB_USER"
 
 ENV INFLUXDB_VERSION <%= ENV.fetch('INFLUXDB_VERSION') %>
+ENV INFLUX_CLIENT=<%= ENV.fetch('INFLUX_CLIENT', '') %>
 ENV INFLUXDB_DEB_SHA256 <%= ENV.fetch('INFLUXDB_DEB_SHA256') %>
+ENV INFLUXDB_ENTRYPOINT <%= ENV.fetch('INFLUXDB_ENTRYPOINT') %>
 
 ENV GO_VERSION <%= ENV.fetch('GO_VERSION') %>
 ENV GO_SHA256SUM <%= ENV.fetch('GO_SHA256SUM') %>
@@ -28,6 +30,10 @@ EXPOSE "$PORT"
 
 ADD template /template
 ADD bin /usr/local/bin
+<% if ENV.fetch('INFLUXDB_VERSION').start_with?('2') %>
+ADD testv2 /tmp/test
+<% else %>
 ADD test /tmp/test
+<% end %>
 
-ENTRYPOINT ["/usr/local/bin/run-database.sh"]
+ENTRYPOINT ["/usr/local/bin/<%= ENV.fetch('INFLUXDB_ENTRYPOINT', 'run-database') %>.sh"]
